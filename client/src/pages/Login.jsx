@@ -26,9 +26,20 @@ function Login() {
         form
       );
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("role", res.data.role);
-      localStorage.setItem("name", res.data.name);
+      localStorage.setItem(
+        "token",
+        res.data.token
+      );
+
+      localStorage.setItem(
+        "role",
+        res.data.user.role
+      );
+
+      localStorage.setItem(
+        "name",
+        res.data.user.name
+      );
 
       alert("Login Successful!");
 
@@ -69,6 +80,7 @@ function Login() {
               placeholder="Enter Email"
               value={form.email}
               onChange={handleChange}
+              required
             />
           </div>
 
@@ -82,6 +94,7 @@ function Login() {
               placeholder="Enter Password"
               value={form.password}
               onChange={handleChange}
+              required
             />
           </div>
 

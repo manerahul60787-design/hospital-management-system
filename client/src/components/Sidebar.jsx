@@ -1,6 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
   const role = localStorage.getItem("role");
   const name = localStorage.getItem("name");
 
@@ -19,7 +21,7 @@ function Sidebar() {
       <p>
         Welcome,
         <br />
-        <strong>{name}</strong>
+        <strong>{name || "User"}</strong>
       </p>
 
       <hr className="text-white" />
@@ -133,7 +135,7 @@ function Sidebar() {
         className="btn btn-danger w-100"
         onClick={() => {
           localStorage.clear();
-          window.location.href = "/login";
+          navigate("/login");
         }}
       >
         🚪 Logout
