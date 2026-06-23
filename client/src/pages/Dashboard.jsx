@@ -30,9 +30,9 @@ function Dashboard() {
     try {
       const [doctorRes, patientRes, appointmentRes] =
         await Promise.all([
-          axios.get("http://localhost:5000/api/doctors"),
-          axios.get("http://localhost:5000/api/patients"),
-          axios.get("http://localhost:5000/api/appointments"),
+          axios.get("https://hospital-management-system-lxxm.onrender.com/api/doctors"),
+          axios.get("https://hospital-management-system-lxxm.onrender.com/api/patients"),
+          axios.get("https://hospital-management-system-lxxm.onrender.com/api/appointments"),
         ]);
 
       setStats({

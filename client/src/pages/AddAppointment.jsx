@@ -21,7 +21,7 @@ function AddAppointment() {
 
   const fetchPatients = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/patients");
+      const res = await axios.get("https://hospital-management-system-lxxm.onrender.com/api/patients");
       setPatients(res.data);
     } catch (err) {
       console.error(err);
@@ -30,7 +30,7 @@ function AddAppointment() {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/doctors");
+      const res = await axios.get("https://hospital-management-system-lxxm.onrender.com/api/doctors");
       setDoctors(res.data);
     } catch (err) {
       console.error(err);
@@ -49,7 +49,7 @@ function AddAppointment() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/appointments",
+        "https://hospital-management-system-lxxm.onrender.com/api/appointments",
         form
       );
 

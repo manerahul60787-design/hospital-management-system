@@ -20,7 +20,7 @@ function Doctors() {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/doctors");
+      const res = await axios.get("https://hospital-management-system-lxxm.onrender.com/api/doctors");
       setDoctors(res.data);
     } catch (err) {
       console.error(err);
@@ -31,7 +31,7 @@ function Doctors() {
     if (!window.confirm("Delete this doctor?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/doctors/${id}`);
+      await axios.delete(`https://hospital-management-system-lxxm.onrender.com/api/doctors/${id}`);
       alert("Doctor deleted successfully!");
       fetchDoctors();
     } catch (err) {
@@ -61,7 +61,7 @@ function Doctors() {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:5000/api/doctors/${editingId}`,
+        `https://hospital-management-system-lxxm.onrender.com/api/doctors/${editingId}`,
         editForm
       );
 

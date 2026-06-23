@@ -21,7 +21,7 @@ function AddPatient() {
     e.preventDefault();
 
     try {
-      await axios.post("http://localhost:5000/api/patients", form);
+      await axios.post("https://hospital-management-system-lxxm.onrender.com/api/patients", form);
 
       alert("✅ Patient added successfully!");
 

@@ -11,7 +11,7 @@ function Appointments() {
   const fetchAppointments = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/appointments"
+        "https://hospital-management-system-lxxm.onrender.com/api/appointments"
       );
 
       setAppointments(res.data);
@@ -25,7 +25,7 @@ function Appointments() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/appointments/${id}/cancel`
+        `https://hospital-management-system-lxxm.onrender.com/api/appointments/${id}/cancel`
       );
 
       alert("Appointment Cancelled!");
@@ -42,7 +42,7 @@ function Appointments() {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/appointments/${id}/complete`
+        `https://hospital-management-system-lxxm.onrender.com/api/appointments/${id}/complete`
       );
 
       alert("Appointment Completed!");

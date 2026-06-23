@@ -22,7 +22,7 @@ function Patients() {
   const fetchPatients = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/patients"
+        "https://hospital-management-system-lxxm.onrender.com/api/patients"
       );
 
       setPatients(res.data);
@@ -36,7 +36,7 @@ function Patients() {
 
     try {
       await axios.delete(
-        `http://localhost:5000/api/patients/${id}`
+        `https://hospital-management-system-lxxm.onrender.com/api/patients/${id}`
       );
 
       alert("Patient deleted successfully!");
@@ -69,7 +69,7 @@ function Patients() {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:5000/api/patients/${editingId}`,
+        `https://hospital-management-system-lxxm.onrender.com/api/patients/${editingId}`,
         editForm
       );
 
