@@ -10,6 +10,8 @@ function Login() {
     password: "",
   });
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -26,27 +28,20 @@ function Login() {
         form
       );
 
-      localStorage.setItem(
-        "token",
-        res.data.token
-      );
-
-      localStorage.setItem(
-        "role",
-        res.data.user.role
-      );
-
-      localStorage.setItem(
-        "name",
-        res.data.user.name
-      );
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("role", res.data.user.role);
+      localStorage.setItem("name", res.data.user.name);
 
       alert("Login Successful!");
 
       navigate("/");
     } catch (error) {
       console.error(error);
-      alert("Invalid Credentials");
+
+      alert(
+        error.response?.data?.message ||
+          "Invalid Credentials"
+      );
     }
   };
 
@@ -87,15 +82,35 @@ function Login() {
           <div className="mb-3">
             <label>Password</label>
 
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              placeholder="Enter Password"
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
+            <div className="input-group">
+              <input
+                type={
+                  showPassword
+                    ? "text"
+                    : "password"
+                }
+                name="password"
+                className="form-control"
+                placeholder="Enter Password"
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={() =>
+                  setShowPassword(
+                    !showPassword
+                  )
+                }
+              >
+                {showPassword
+                  ? "🙈"
+                  : "👁️"}
+              </button>
+            </div>
           </div>
 
           <button
