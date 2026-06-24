@@ -14,9 +14,7 @@ function Sidebar() {
         minHeight: "100vh",
       }}
     >
-      <h3 className="mb-4">
-        🏥 Hospital HMS
-      </h3>
+      <h3 className="mb-4">🏥 Hospital HMS</h3>
 
       <p>
         Welcome,
@@ -29,7 +27,7 @@ function Sidebar() {
       {role === "admin" && (
         <>
           <Link
-            to="/"
+            to="/dashboard"
             className="btn btn-dark w-100 text-start mb-2"
           >
             🏠 Dashboard
@@ -82,7 +80,7 @@ function Sidebar() {
       {role === "receptionist" && (
         <>
           <Link
-            to="/"
+            to="/dashboard"
             className="btn btn-dark w-100 text-start mb-2"
           >
             🏠 Dashboard

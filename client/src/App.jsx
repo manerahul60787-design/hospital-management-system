@@ -17,6 +17,7 @@ function App() {
 
   // Hide sidebar on login and register pages
   const hideSidebar =
+    location.pathname === "/" ||
     location.pathname === "/login" ||
     location.pathname === "/register";
 
@@ -26,13 +27,18 @@ function App() {
 
       <div style={{ flex: 1, padding: "20px" }}>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+
           <Route path="/doctors" element={<Doctors />} />
           <Route path="/add-doctor" element={<AddDoctor />} />
+
           <Route path="/patients" element={<Patients />} />
           <Route path="/add-patient" element={<AddPatient />} />
+
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/add-appointment" element={<AddAppointment />} />
+
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
