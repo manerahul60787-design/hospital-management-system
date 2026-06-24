@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 function Patients() {
   const [patients, setPatients] = useState([]);
@@ -21,8 +21,8 @@ function Patients() {
 
   const fetchPatients = async () => {
     try {
-      const res = await axios.get(
-        "https://hospital-management-system-lxxm.onrender.com/api/patients"
+      const res = await api.get(
+        "/api/patients"
       );
 
       setPatients(res.data);
@@ -35,8 +35,8 @@ function Patients() {
     if (!window.confirm("Delete this patient?")) return;
 
     try {
-      await axios.delete(
-        `https://hospital-management-system-lxxm.onrender.com/api/patients/${id}`
+      await api.delete(
+        `/api/patients/${id}`
       );
 
       alert("Patient deleted successfully!");
@@ -68,8 +68,8 @@ function Patients() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(
-        `https://hospital-management-system-lxxm.onrender.com/api/patients/${editingId}`,
+      await api.put(
+        `/api/patients/${editingId}`,
         editForm
       );
 

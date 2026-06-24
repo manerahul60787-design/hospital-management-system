@@ -82,6 +82,27 @@ function Sidebar() {
       {role === "receptionist" && (
         <>
           <Link
+            to="/"
+            className="btn btn-dark w-100 text-start mb-2"
+          >
+            🏠 Dashboard
+          </Link>
+
+          <Link
+            to="/doctors"
+            className="btn btn-dark w-100 text-start mb-2"
+          >
+            👨‍⚕️ Doctors
+          </Link>
+
+          <Link
+            to="/add-doctor"
+            className="btn btn-dark w-100 text-start mb-2"
+          >
+            ➕ Add Doctor
+          </Link>
+
+          <Link
             to="/patients"
             className="btn btn-dark w-100 text-start mb-2"
           >

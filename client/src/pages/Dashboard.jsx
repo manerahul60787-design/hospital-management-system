@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 import {
   BarChart,
@@ -18,6 +18,9 @@ function Dashboard() {
     totalAppointments: 0,
   });
 
+  const name = localStorage.getItem("name") || "Admin";
+  const role = localStorage.getItem("role") || "admin";
+
   const [recentDoctors, setRecentDoctors] = useState([]);
   const [recentPatients, setRecentPatients] = useState([]);
   const [recentAppointments, setRecentAppointments] = useState([]);
@@ -30,9 +33,9 @@ function Dashboard() {
     try {
       const [doctorRes, patientRes, appointmentRes] =
         await Promise.all([
-          axios.get("https://hospital-management-system-lxxm.onrender.com/api/doctors"),
-          axios.get("https://hospital-management-system-lxxm.onrender.com/api/patients"),
-          axios.get("https://hospital-management-system-lxxm.onrender.com/api/appointments"),
+          api.get("/api/doctors"),
+          api.get("/api/patients"),
+          api.get("/api/appointments"),
         ]);
 
       setStats({
@@ -76,9 +79,9 @@ function Dashboard() {
     <div className="container-fluid mt-4">
       {/* Welcome Card */}
       <div className="alert alert-primary shadow">
-        <h3>👋 Welcome Admin</h3>
+        <h3>👋 Welcome {name}</h3>
         <p className="mb-0">
-          Hospital Management Dashboard
+          {role.charAt(0).toUpperCase() + role.slice(1)} Dashboard
         </p>
       </div>
 

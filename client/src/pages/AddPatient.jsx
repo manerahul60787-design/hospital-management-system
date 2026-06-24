@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 function AddPatient() {
   const [form, setForm] = useState({
@@ -21,7 +21,7 @@ function AddPatient() {
     e.preventDefault();
 
     try {
-      await axios.post("https://hospital-management-system-lxxm.onrender.com/api/patients", form);
+      await api.post("/api/patients", form);
 
       alert("✅ Patient added successfully!");
 

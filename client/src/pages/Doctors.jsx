@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 function Doctors() {
   const [doctors, setDoctors] = useState([]);
@@ -20,7 +20,7 @@ function Doctors() {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get("https://hospital-management-system-lxxm.onrender.com/api/doctors");
+      const res = await api.get("/api/doctors");
       setDoctors(res.data);
     } catch (err) {
       console.error(err);
@@ -31,7 +31,7 @@ function Doctors() {
     if (!window.confirm("Delete this doctor?")) return;
 
     try {
-      await axios.delete(`https://hospital-management-system-lxxm.onrender.com/api/doctors/${id}`);
+      await api.delete(`/api/doctors/${id}`);
       alert("Doctor deleted successfully!");
       fetchDoctors();
     } catch (err) {
@@ -60,8 +60,8 @@ function Doctors() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(
-        `https://hospital-management-system-lxxm.onrender.com/api/doctors/${editingId}`,
+      await api.put(
+        `/api/doctors/${editingId}`,
         editForm
       );
 

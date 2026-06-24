@@ -5,3 +5,6 @@ client/dist/
 server/dist/
 
 .env
+client/.env.local
+client/.env.production
+server/.env.production

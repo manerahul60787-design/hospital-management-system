@@ -10,12 +10,15 @@ import AddPatient from "./pages/AddPatient";
 import Appointments from "./pages/Appointments";
 import AddAppointment from "./pages/AddAppointment";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const location = useLocation();
 
-  // Hide sidebar on login page
-  const hideSidebar = location.pathname === "/login";
+  // Hide sidebar on login and register pages
+  const hideSidebar =
+    location.pathname === "/login" ||
+    location.pathname === "/register";
 
   return (
     <div style={{ display: "flex" }}>
@@ -31,6 +34,7 @@ function App() {
           <Route path="/appointments" element={<Appointments />} />
           <Route path="/add-appointment" element={<AddAppointment />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </div>
     </div>

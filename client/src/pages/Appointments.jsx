@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 
 function Appointments() {
   const [appointments, setAppointments] = useState([]);
@@ -10,8 +10,8 @@ function Appointments() {
 
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get(
-        "https://hospital-management-system-lxxm.onrender.com/api/appointments"
+      const res = await api.get(
+        "/api/appointments"
       );
 
       setAppointments(res.data);
@@ -24,8 +24,8 @@ function Appointments() {
     if (!window.confirm("Cancel this appointment?")) return;
 
     try {
-      await axios.put(
-        `https://hospital-management-system-lxxm.onrender.com/api/appointments/${id}/cancel`
+      await api.put(
+        `/api/appointments/${id}/cancel`
       );
 
       alert("Appointment Cancelled!");
@@ -41,8 +41,8 @@ function Appointments() {
     if (!window.confirm("Complete this appointment?")) return;
 
     try {
-      await axios.put(
-        `https://hospital-management-system-lxxm.onrender.com/api/appointments/${id}/complete`
+      await api.put(
+        `/api/appointments/${id}/complete`
       );
 
       alert("Appointment Completed!");

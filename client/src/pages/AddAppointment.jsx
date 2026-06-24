@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../services/api";
 import { useNavigate } from "react-router-dom";
 
 function AddAppointment() {
@@ -21,7 +21,7 @@ function AddAppointment() {
 
   const fetchPatients = async () => {
     try {
-      const res = await axios.get("https://hospital-management-system-lxxm.onrender.com/api/patients");
+      const res = await api.get("/api/patients");
       setPatients(res.data);
     } catch (err) {
       console.error(err);
@@ -30,7 +30,7 @@ function AddAppointment() {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get("https://hospital-management-system-lxxm.onrender.com/api/doctors");
+      const res = await api.get("/api/doctors");
       setDoctors(res.data);
     } catch (err) {
       console.error(err);
@@ -48,8 +48,8 @@ function AddAppointment() {
     e.preventDefault();
 
     try {
-      await axios.post(
-        "https://hospital-management-system-lxxm.onrender.com/api/appointments",
+      await api.post(
+        "/api/appointments",
         form
       );
 

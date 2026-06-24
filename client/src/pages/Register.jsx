@@ -1,13 +1,15 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
-function Login() {
+function Register() {
   const navigate = useNavigate();
 
   const [form, setForm] = useState({
+    name: "",
     email: "",
     password: "",
+    role: "receptionist",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -23,25 +25,13 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await api.post(
-        "/api/auth/login",
-        form
-      );
+      await api.post("/api/auth/register", form);
 
-      localStorage.setItem("token", res.data.token);
-      localStorage.setItem("role", res.data.user.role);
-      localStorage.setItem("name", res.data.user.name);
-
-      alert("Login Successful!");
-
-      navigate("/");
+      alert("Registration successful! Please log in.");
+      navigate("/login");
     } catch (error) {
       console.error(error);
-
-      alert(
-        error.response?.data?.message ||
-          "Invalid Credentials"
-      );
+      alert(error.response?.data?.message || "Registration failed");
     }
   };
 
@@ -56,18 +46,28 @@ function Login() {
       <div
         className="card shadow p-4"
         style={{
-          width: "400px",
+          width: "420px",
           borderRadius: "15px",
         }}
       >
-        <h2 className="text-center mb-4">
-          🏥 Hospital Login
-        </h2>
+        <h2 className="text-center mb-4">🏥 Create Account</h2>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label>Email</label>
+            <label>Name</label>
+            <input
+              type="text"
+              name="name"
+              className="form-control"
+              placeholder="Enter Name"
+              value={form.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
+          <div className="mb-3">
+            <label>Email</label>
             <input
               type="email"
               name="email"
@@ -81,14 +81,9 @@ function Login() {
 
           <div className="mb-3">
             <label>Password</label>
-
             <div className="input-group">
               <input
-                type={
-                  showPassword
-                    ? "text"
-                    : "password"
-                }
+                type={showPassword ? "text" : "password"}
                 name="password"
                 className="form-control"
                 placeholder="Enter Password"
@@ -96,39 +91,37 @@ function Login() {
                 onChange={handleChange}
                 required
               />
-
               <button
                 type="button"
                 className="btn btn-outline-secondary"
-                onClick={() =>
-                  setShowPassword(
-                    !showPassword
-                  )
-                }
+                onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword
-                  ? "🙈"
-                  : "👁️"}
+                {showPassword ? "🙈" : "👁️"}
               </button>
             </div>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary w-100"
-          >
-            Login
-          </button>
-
-          <div className="text-center mt-3">
-            <small>
-              Don't have an account? <Link to="/register">Register here</Link>
-            </small>
+          <div className="mb-3">
+            <label>Role</label>
+            <select
+              name="role"
+              className="form-select"
+              value={form.role}
+              onChange={handleChange}
+            >
+              <option value="receptionist">Receptionist</option>
+              <option value="doctor">Doctor</option>
+              <option value="admin">Admin</option>
+            </select>
           </div>
+
+          <button type="submit" className="btn btn-success w-100">
+            Register
+          </button>
         </form>
       </div>
     </div>
   );
 }
 
-export default Login;
+export default Register;
